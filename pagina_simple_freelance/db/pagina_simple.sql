@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-01-2021 a las 00:03:21
+-- Tiempo de generación: 24-01-2021 a las 13:43:42
 -- Versión del servidor: 10.1.47-MariaDB-0+deb9u1
 -- Versión de PHP: 7.0.33-0+deb9u10
 
@@ -38,11 +38,34 @@ CREATE TABLE `auditoria` (
 --
 
 INSERT INTO `auditoria` (`id`, `id_usuario`, `fecha_entrada`, `fecha_salida`) VALUES
-(4, 2, '2021-01-23 13:30:02', '2021-01-23 13:31:03'),
-(5, 2, '2021-01-23 13:35:38', '2021-01-23 14:15:34'),
-(6, 2, '2021-01-23 14:15:35', '2021-01-23 14:34:31'),
-(7, 2, '2021-01-23 14:42:16', '2021-01-23 17:12:45'),
-(8, 2, '2021-01-23 22:23:59', '2021-01-23 23:04:28');
+(9, 2, '2021-01-24 08:43:53', '2021-01-24 09:23:32'),
+(10, 3, '2021-01-24 09:23:35', '2021-01-24 10:06:57'),
+(11, 2, '2021-01-24 11:39:47', '2021-01-24 12:31:45'),
+(12, 3, '2021-01-24 12:31:47', '2021-01-24 12:32:22');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ticket`
+--
+
+CREATE TABLE `ticket` (
+  `id_ticket` int(11) NOT NULL,
+  `solicitante` int(11) NOT NULL,
+  `departamento` varchar(150) NOT NULL,
+  `telefono_contac` varchar(150) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `problema` text NOT NULL,
+  `estatus` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `ticket`
+--
+
+INSERT INTO `ticket` (`id_ticket`, `solicitante`, `departamento`, `telefono_contac`, `email`, `problema`, `estatus`) VALUES
+(2, 3, 'hardware', '04125648975', 'lopez@gmail.com', 'mi computador no prende', 'aceptado'),
+(3, 4, 'software', '04128547825', 'escamilla@gmail.com', 'el windows se reinicia', 'cerrado');
 
 -- --------------------------------------------------------
 
@@ -68,7 +91,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `correo`, `contraseña`, `permiso`, `telefono_fijo`, `telefono_cel`, `direccion`) VALUES
 (2, 'admin', 'admin', 'admin@gmail.com', '$2y$12$.AaotL4IelBqmYt.0PSVMuq/CNwBi6sPT7uUBnPLE3ziK5ss8sfNG', 'admin', '02125584589', '04124567825', 'direccion'),
-(3, 'usuario', 'usuario', 'usuario@gmail.com', '$2y$12$Izjl.bfVdNKoAJLLNQQt5usungd.2ssJDTBCWO7xtF1.lA.lnIJAy', 'usuario', '', '', '');
+(3, 'usuario', 'usuario', 'usuario@gmail.com', '$2y$12$Izjl.bfVdNKoAJLLNQQt5usungd.2ssJDTBCWO7xtF1.lA.lnIJAy', 'usuario', '', '', ''),
+(4, 'usuario2', 'usuario2', 'usuario2@gmail.com', '$2y$12$Izjl.bfVdNKoAJLLNQQt5usungd.2ssJDTBCWO7xtF1.lA.lnIJAy', 'usuario', '', '', '');
 
 --
 -- Índices para tablas volcadas
@@ -80,6 +104,13 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `apellido`, `correo`, `contraseñ
 ALTER TABLE `auditoria`
   ADD PRIMARY KEY (`id`),
   ADD KEY `usuario` (`id_usuario`);
+
+--
+-- Indices de la tabla `ticket`
+--
+ALTER TABLE `ticket`
+  ADD PRIMARY KEY (`id_ticket`),
+  ADD KEY `solicitante_usuario` (`solicitante`);
 
 --
 -- Indices de la tabla `usuario`
@@ -95,7 +126,12 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `auditoria`
 --
 ALTER TABLE `auditoria`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT de la tabla `ticket`
+--
+ALTER TABLE `ticket`
+  MODIFY `id_ticket` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
@@ -110,6 +146,12 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `auditoria`
   ADD CONSTRAINT `usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
+
+--
+-- Filtros para la tabla `ticket`
+--
+ALTER TABLE `ticket`
+  ADD CONSTRAINT `solicitante_usuario` FOREIGN KEY (`solicitante`) REFERENCES `usuario` (`id_usuario`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

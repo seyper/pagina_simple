@@ -41,8 +41,7 @@
             <h2>
                 Registrar usuario
             </h2>
-            <!-- ../php/registro.php -->
-            <form action="" method="post" id="form">
+            <form action="../php/registro.php" method="post" id="form">
                 <div class="row">
                     <div class="col-4">
                         <label for="">
