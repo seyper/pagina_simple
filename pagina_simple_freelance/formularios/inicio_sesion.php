@@ -41,7 +41,7 @@
                         <label for="">
                             Correo:
                         </label>
-                        <input type="email" name="correo" id="" class="form-control" required autocomplete="off" oninvalid="setCustomValidity('El correo es obligatorio')">
+                        <input type="email" name="correo" id="" class="form-control" required autocomplete="off" >
                         <input type="hidden" name="fecha_entrada" value="<?= date("Y-m-d H:i:s") ?>">
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <label for="">
                             Contraseña:
                         </label>
-                        <input type="password" name="contra" id="" class="form-control" required oninvalid="setCustomValidity('La contraseña no puede estar vacía')">
+                        <input type="password" name="contra" id="" class="form-control" required >
                     </div>
                 </div>
                 <div class="row mt-3 justify-content-center">

@@ -154,17 +154,17 @@ if (!isset($_SESSION['usuario'])) {
                         </div>
                         <div class="col-lg-4 col-xl-4">
                             <label for="">Teléfono contacto</label>
-                            <input type="text" name="telefono_contac" id="" class="form-control"  oninvalid="setCustomValidity('El teléfono es obligatorio')" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" required>
+                            <input type="text" name="telefono_contac" id="" class="form-control"  onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" required>
                         </div>
                         <div class="col-lg-4 col-xl-4">
                             <label for="">Correo electrónico</label>
-                            <input type="text" name="email" id="" class="form-control"  oninvalid="setCustomValidity('El correo electrónico es obligatorio')" required>
+                            <input type="text" name="email" id="" class="form-control" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-xl-12">
                             <label for="">Problema</label>
-                            <textarea name="problema" id="" cols="30" rows="10" class="form-control" required  oninvalid="setCustomValidity('Describir el problema es obligatorio')"></textarea>
+                            <textarea name="problema" id="" cols="30" rows="10" class="form-control" required ></textarea>
                         </div>
                     </div>
                     <div class="row">

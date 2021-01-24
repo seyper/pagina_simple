@@ -47,7 +47,7 @@
                         <label for="">
                             Nombre:
                         </label>
-                        <input type="text" name="nombre" id="" class="form-control" required minlength="3" oninvalid="setCustomValidity('El nombre es obligatorio')">
+                        <input type="text" name="nombre" id="" class="form-control" required minlength="3">
                     </div>
                     <div class="col-4">
                         <label for="">
@@ -59,7 +59,7 @@
                         <label for="">
                             Correo:
                         </label>
-                        <input type="email" name="correo" id="" class="form-control" required minlength="3" oninvalid="setCustomValidity('El correo es obligatorio')">
+                        <input type="email" name="correo" id="" class="form-control" required minlength="3">
                     </div>
                 </div>
                 <div class="row">
@@ -67,13 +67,13 @@
                         <label for="">
                             Contraseña:
                         </label>
-                        <input type="password" name="contra" id="contra" class="form-control" required oninvalid="setCustomValidity('La contraseña no puede estar vacía')">
+                        <input type="password" name="contra" id="contra" class="form-control"   required>
                     </div>
                     <div class="col-lg-6 col-6">
                         <label for="">
                             Repetir contraseña:
                         </label>
-                        <input type="password" class="form-control" id="contra2" required oninvalid="setCustomValidity('Repetir la contraseña es obligatorio')">
+                        <input type="password" class="form-control" id="contra2"  required>
                     </div>
                 </div>
                 <div class="row mt-3 d-flex justify-content-center">

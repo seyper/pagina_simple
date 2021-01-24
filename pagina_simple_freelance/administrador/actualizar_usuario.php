@@ -181,11 +181,11 @@ if (!isset($_SESSION['usuario'])) {
                 <div class="row">
                     <div class="col-lg-6 col-xl-6">
                         <label for="contra">Contraseña nueva:</label>
-                        <input type="password" name="contra" id="contra" class="form-control" required oninvalid="setCustomValidity('La contraseña no puede quedar vacía')">
+                        <input type="password" name="contra" id="contra" class="form-control"  required>
                     </div>
                     <div class="col-lg-6 col-xl-6">
                         <label for="">Repetir contraseña:</label>
-                        <input type="password" id="contra2" class="form-control" required oninvalid="setCustomValidity('Repetir la contraseña es obligatorio')">
+                        <input type="password" id="contra2" class="form-control"   required>
                     </div>
                 </div>
                 <div class="row">
