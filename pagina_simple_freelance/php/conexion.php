@@ -2,8 +2,8 @@
 
 
 $server   = "localhost";
-$username = "root";
-$password = "";
+$username = "pc";
+$password = "pc";
 $database = "pagina_simple";
 
 

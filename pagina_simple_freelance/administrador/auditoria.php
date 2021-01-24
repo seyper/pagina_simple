@@ -79,7 +79,17 @@ if (!isset($_SESSION['usuario'])) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                        <?php
+                            if ($_SESSION['permiso'] == 'admin') {
+                            ?>
+                                <a class="nav-link" href="consultar_ticket.php">
+                                <?php
+                            }else{
+                                ?>
+                                <a class="nav-link" href="añadir_ticket.php">
+                                <?php
+                            }
+                                ?>
                                 <span data-feather="layers"></span>
                                 Tickets
                             </a>

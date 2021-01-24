@@ -83,10 +83,20 @@ if (!isset($_SESSION['usuario'])) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="layers"></span>
-                                Tickets
-                            </a>
+                            <?php
+                            if ($_SESSION['permiso'] == 'admin') {
+                            ?>
+                                <a class="nav-link" href="consultar_ticket.php">
+                                <?php
+                            } else {
+                                ?>
+                                    <a class="nav-link" href="añadir_ticket.php">
+                                    <?php
+                                }
+                                    ?>
+                                    <span data-feather="layers"></span>
+                                    Tickets
+                                    </a>
                         </li>
                     </ul>
 
@@ -125,10 +135,40 @@ if (!isset($_SESSION['usuario'])) {
                     echo "";
                 } elseif ($_GET['alert'] == 'modf_exito') {
                     echo "<div id='alert' class='alert alert-success alert-dismissable'>
-            <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-            <h4>  <i class='icon fa fa-check-circle'></i> Éxito!</h4>
-            La contraseña se ha cambiado correctamente.
-          </div>";
+                        <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                        <h4>  <i class='icon fa fa-check-circle'></i> Éxito!</h4>
+                        La contraseña se ha cambiado correctamente.
+                    </div>";
+                } elseif ($_GET['alert'] == 'error_ticket') {
+                    echo "<div class='alert alert-danger alert-dismissable'>
+                    <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                    <h4>  <i class='icon fa fa-times-circle'></i> Error inesperado!</h4>
+                       El ticket no se ha enviado correctamente. Por favor intente nuevamente.
+                      </div>";
+                } elseif ($_GET['alert'] == 'exito_ticket') {
+                    echo "<div id='alert' class='alert alert-success alert-dismissable'>
+                            <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                            <h4>  <i class='icon fa fa-check-circle'></i> Éxito!</h4>
+                            El ticket se ha enviado correctamente. En cuanto lo acepten, recibirá una respuesta.
+                          </div>";
+                }
+                $id = $_SESSION['id'];
+
+                $query = "SELECT `id_ticket`, `solicitante`, `departamento`, `telefono_contac`, `email`, `problema`, `estatus` FROM `ticket` WHERE solicitante='$id'";
+                $result = mysqli_query($dbconn, $query) or die('Error al avisar del ticket aceptado' . mysqli_error($dbconn));
+
+                if ($data = mysqli_fetch_assoc($result)) {
+                    if ($data['estatus'] == 'aceptado') {
+                        echo "<div id='alert' class='alert alert-success alert-dismissable'>
+                        <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                        <h4>  <i class='icon fa fa-check-circle'></i> Éxito!</h4>
+                        Su ticket ha sido aceptado correctamente. Por favor espere a que lo contacten.
+                      </div>";
+                    } else {
+                        echo "";
+                    }
+                } else {
+                    echo "";
                 }
                 ?>
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
@@ -180,13 +220,49 @@ if (!isset($_SESSION['usuario'])) {
                     ?>
                     <div class="col-lg-3 col-xs-6">
                         <!-- small box -->
-                        <div style="background-color:#04B404;color:#fff" class="small-box">
+                        <div style="background-color:#FE2E2E;color:#fff" class="small-box">
                             <div class="inner">
+                                <?php
+                                if ($_SESSION['permiso'] == 'admin') {
+                                    $query = mysqli_query($dbconn, "SELECT COUNT(id_ticket) as numero FROM ticket")
+                                        or die('Error' . mysqli_error($dbconn));
+                                } else {
+                                    $id = $_SESSION['id'];
+                                    $query = mysqli_query($dbconn, "SELECT COUNT(id_ticket) as numero FROM ticket WHERE solicitante='$id'")
+                                        or die('Error' . mysqli_error($dbconn));
+                                }
+                                $data = mysqli_fetch_assoc($query);
+                                ?>
                                 <h6>Cantidad de tickets</h6>
-                                <h3>0</h3>
+                                <h3><?php echo $data['numero']; ?></h3>
                             </div>
                             <div class="icon">
                                 <i class="fa fa-database"></i>
+                            </div>
+                            <a href="" class="small-box-footer"><i class="fa"></i></a>
+                        </div>
+                    </div><!-- ./col -->
+
+                    <div class="col-lg-3 col-xs-6">
+                        <!-- small box -->
+                        <div style="background-color:#04B404;color:#fff" class="small-box">
+                            <div class="inner">
+                                <?php
+                                if ($_SESSION['permiso'] == 'admin') {
+                                    $query = mysqli_query($dbconn, "SELECT COUNT(id_ticket) as numero FROM ticket WHERE estatus = 'cerrado'")
+                                        or die('Error' . mysqli_error($dbconn));
+                                } else {
+                                    $id = $_SESSION['id'];
+                                    $query = mysqli_query($dbconn, "SELECT COUNT(id_ticket) as numero FROM ticket WHERE solicitante='$id' AND estatus = 'cerrado'")
+                                        or die('Error' . mysqli_error($dbconn));
+                                }
+                                $data = mysqli_fetch_assoc($query);
+                                ?>
+                                <h6>Tickets terminados</h6>
+                                <h3><?php echo $data['numero']; ?></h3>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-check"></i>
                             </div>
                             <a href="" class="small-box-footer"><i class="fa"></i></a>
                         </div>

@@ -15,7 +15,7 @@ if (!isset($_SESSION['usuario'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Actualización</title>
+    <title>Añadir Ticket</title>
 
     <!-- Bootstrap importante CSS -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
@@ -56,9 +56,9 @@ if (!isset($_SESSION['usuario'])) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="actualizar_usuario.php">
+                            <a class="nav-link" href="actualizar_usuario.php">
                                 <span data-feather="user"></span>
-                                Actualizar usuario<span class="sr-only">(current)</span>
+                                Actualizar usuario
                             </a>
                         </li>
                         <?php
@@ -80,20 +80,10 @@ if (!isset($_SESSION['usuario'])) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <?php
-                            if ($_SESSION['permiso'] == 'admin') {
-                            ?>
-                                <a class="nav-link" href="consultar_ticket.php">
-                                <?php
-                            } else {
-                                ?>
-                                    <a class="nav-link" href="añadir_ticket.php">
-                                    <?php
-                                }
-                                    ?>
-                                    <span data-feather="layers"></span>
-                                    Tickets
-                                    </a>
+                            <a class="nav-link active" href="añadir_ticket">
+                                <span data-feather="layers"></span>
+                                Tickets<span class="sr-only">(current)</span>
+                            </a>
                         </li>
                     </ul>
 
@@ -127,72 +117,71 @@ if (!isset($_SESSION['usuario'])) {
             </nav>
 
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Bienvenido <?= $_SESSION['nombre'] ?> a la actualización de usuario</h1>
-                </div>
-                <form action="../php/modificar_usuarios.php" method="POST" id="form">
-                    <div id="error" class="alert alert-danger ocultar" role="alert">
-                        Las contraseñas no coinciden, vuelva a intentar.
-                    </div>
-                    <div id="ok" class="alert alert-success ocultar" role="alert">
-                        Las contraseñas coinciden. Procesando formulario...
-                    </div>
-                    <h3>Actualizar Usuario</h3>
-                    <div class="row">
-                        <div class="col-lg-4 col-xl-4">
-                            <?php
-                            $id = $_SESSION['id'];
-                            $query = "SELECT * FROM usuario WHERE id_usuario='$id'";
-                            $result = mysqli_query($dbconn, $query) or die(mysqli_error($dbconn));
-                            if ($data = mysqli_fetch_assoc($result)) {
-                            ?>
-                                <label for="nombre">Nombre</label>
-                                <input type="text" name="nombre" id="" class="form-control" value="<?= $data['nombre'] ?>" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 209) || (event.charCode == 241))">
-                        </div>
-                        <div class="col-lg-4 col-xl-4">
-                            <label for="apellido">Apellido</label>
-                            <input type="text" name="apellido" id="" class="form-control" value="<?= $data['apellido'] ?>" onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 209) || (event.charCode == 241))">
-                        </div>
-                        <div class="col-lg-4 col-xl-4">
-                            <label for="correo">Correo</label>
-                            <input type="text" name="correo" id="" class="form-control" value="<?= $data['correo'] ?>">
-                        </div>
-                    </div>
+                <?php
+                $id = $_SESSION['id'];
 
+                $query = "SELECT `id_ticket`, `solicitante`, `departamento`, `telefono_contac`, `email`, `problema`, `estatus` FROM `ticket` WHERE solicitante='$id'";
+                $result = mysqli_query($dbconn, $query) or die('Error al avisar del ticket aceptado' . mysqli_error($dbconn));
+
+                if ($data = mysqli_fetch_assoc($result)) {
+                    if ($data['estatus'] == 'enviado' or $data['estatus'] == 'aceptado') {
+                        $estatus = true;
+                        echo "<div class='alert alert-danger alert-dismissable'>
+                                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                                <h4>  <i class='icon fa fa-times-circle'></i> Error inesperado!</h4>
+                                Usted ya ha enviado un ticket, espere a que sea aceptado y culminado.
+                            </div>";
+                    } else {
+                        $estatus = false;
+                    }
+                } else {
+                    $estatus = false;
+                }
+                ?>
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Bienvenido <?= $_SESSION['nombre'] ?> a la solicitud de tickets</h1>
+                </div>
+                <form action="../php/agregar_ticket.php" method="POST">
+                    <h3>Solicitar ticket</h3>
                     <div class="row">
-                        <div class="col-lg-6 col-xl-6">
-                            <label for="">Teléfono celular</label>
-                            <input type="tel" name="telefono_cel" id="" class="form-control" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" value="<?= $data['telefono_cel'] ?>">
+                        <div class="col-lg-4 col-xl-4">
+                            <label for="">Departamento</label>
+                            <select name="departamento" id="" class="form-control">
+                                <option value="ventas">Ventas</option>
+                                <option value="software">Software</option>
+                                <option value="hardware">Hardware</option>
+                            </select>
                         </div>
-                        <div class="col-lg-6 col-xl-6">
-                            <label for="">Teléfono fijo</label>
-                            <input type="tel" name="telefono_fijo" id="" class="form-control" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" value="<?= $data['telefono_fijo'] ?>">
+                        <div class="col-lg-4 col-xl-4">
+                            <label for="">Teléfono contacto</label>
+                            <input type="text" name="telefono_contac" id="" class="form-control"  oninvalid="setCustomValidity('El teléfono es obligatorio')" onkeypress="return (event.charCode >= 48 && event.charCode <= 57)" required>
+                        </div>
+                        <div class="col-lg-4 col-xl-4">
+                            <label for="">Correo electrónico</label>
+                            <input type="text" name="email" id="" class="form-control"  oninvalid="setCustomValidity('El correo electrónico es obligatorio')" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-xl-12">
-                            <label for="">Dirección</label>
-                            <input type="text" name="direccion" id="" class="form-control" value="<?= $data['direccion'] ?>">
+                            <label for="">Problema</label>
+                            <textarea name="problema" id="" cols="30" rows="10" class="form-control" required  oninvalid="setCustomValidity('Describir el problema es obligatorio')"></textarea>
                         </div>
                     </div>
-                <?php
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <?php
+                            if ($estatus) {
+                            ?>
+                                <input type="button" value="Enviar" class="btn btn-primary">
+                            <?php
+                            } else {
+                            ?>
+                                <input type="submit" value="Enviar" class="btn btn-primary">
+                            <?php
                             }
-                ?>
-                <div class="row">
-                    <div class="col-lg-6 col-xl-6">
-                        <label for="contra">Contraseña nueva:</label>
-                        <input type="password" name="contra" id="contra" class="form-control" required oninvalid="setCustomValidity('La contraseña no puede quedar vacía')">
+                            ?>
+                        </div>
                     </div>
-                    <div class="col-lg-6 col-xl-6">
-                        <label for="">Repetir contraseña:</label>
-                        <input type="password" id="contra2" class="form-control" required oninvalid="setCustomValidity('Repetir la contraseña es obligatorio')">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <input type="submit" value="Actualizar" class="btn btn-primary">
-                    </div>
-                </div>
                 </form>
             </main>
         </div>
