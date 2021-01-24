@@ -105,7 +105,12 @@ body {
 .form-control {
 	margin-bottom: 0.75rem ;
 }
-
+.mostrar{
+  display: block;
+}
+.ocultar{
+  display: none;
+}
 
 /*
  * Footer

@@ -35,13 +35,13 @@
             <h2>
                 Iniciar sesión
             </h2>
-            <form action="../php/login-check.php" method="post">
+            <form action="../php/login-check.php" method="post" id="form">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 col-6">
                         <label for="">
                             Correo:
                         </label>
-                        <input type="email" name="correo" id="" class="form-control" required>
+                        <input type="email" name="correo" id="" class="form-control" required autocomplete="off" oninvalid="setCustomValidity('El correo es obligatorio')">
                         <input type="hidden" name="fecha_entrada" value="<?= date("Y-m-d H:i:s") ?>">
                     </div>
                 </div>
@@ -50,7 +50,7 @@
                         <label for="">
                             Contraseña:
                         </label>
-                        <input type="password" name="contra" id="" class="form-control" required>
+                        <input type="password" name="contra" id="" class="form-control" required oninvalid="setCustomValidity('La contraseña no puede estar vacía')">
                     </div>
                 </div>
                 <div class="row mt-3 justify-content-center">
@@ -61,7 +61,7 @@
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <p>Esta página esta desarrollada con <a href="https://getbootstrap.com/">Bootstrap.</a></p>
+                
             </div>
         </footer>
     </div>
@@ -73,6 +73,7 @@
     ================================================== -->
     <script src="../assets/js/jquery.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/validacion.js"></script>
 
 </body>
 

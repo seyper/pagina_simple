@@ -32,16 +32,57 @@
         </header>
 
         <main role="main" class="inner cover">
-            <h1 class="cover-heading">Soporte de confianza</h1>
-            <p class="lead">Si deseas saber más, entra en el link y registrate como un nuevo usuario.</p>
-            <p class="lead">
-                <a href="formularios/registro_usuarios.php" class="btn btn-lg btn-secondary">Registrarse</a>
-            </p>
+            <h2>
+                Contáctanos
+            </h2>
+            <form action="../php/login-check.php" method="post">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-6">
+                        <label for="">
+                            Nombre:
+                        </label>
+                        <input type="text" name="" id="" class="form-control">
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-6">
+                        <label for="">
+                            Email:
+                        </label>
+                        <input type="email" name="" id="" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-6">
+                        <label for="">
+                            Asunto:
+                        </label>
+                        <input type="text" name="" id="" class="form-control">
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-6">
+                        <label for="">
+                            Mensaje:
+                        </label>
+                        <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="row mt-3 justify-content-center">
+                    <input type="submit" value="Iniciar sesión" class="btn btn-success btn-lg">
+                </div>
+                <div class="row justify-content-center mt-4">
+                    <p>Teléfono del equipo de soporte: (425) 555-1212</p>
+                </div>
+                <div class="row justify-content-center">
+                    <p>Correo electrónico: soporte@gmail.com</p>
+                </div>
+            </form>
         </main>
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <p>Esta página esta desarrollada con <a href="https://getbootstrap.com/">Bootstrap.</a></p>
+
             </div>
         </footer>
     </div>

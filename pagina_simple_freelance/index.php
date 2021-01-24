@@ -69,13 +69,10 @@
 
     <footer class="mastfoot mt-auto">
       <div class="inner">
-        <p>Esta página esta desarrollada con <a href="https://getbootstrap.com/">Bootstrap.</a></p>
+        
       </div>
     </footer>
   </div>
-
-
-
 
   <!-- Bootstrap importante JavaScript
     ================================================== -->
