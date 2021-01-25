@@ -63,7 +63,7 @@
       <h1 class="cover-heading">Soporte de confianza</h1>
       <p class="lead">Si deseas saber más, entra en el link y registrate como un nuevo usuario.</p>
       <p class="lead">
-        <a href="views/registro_usuarios.php" class="btn btn-lg btn-secondary">Registrarse</a>
+        <a href="registro_usuarios.php" class="btn btn-lg btn-secondary">Registrarse</a>
       </p>
     </main>
 
