@@ -120,7 +120,7 @@ if (!isset($_SESSION['usuario'])) {
                 <?php
                 $id = $_SESSION['id'];
 
-                $query = "SELECT `id_ticket`, `solicitante`, `departamento`, `telefono_contac`, `email`, `problema`, `estatus` FROM `ticket` WHERE solicitante='$id'";
+                $query = "SELECT * FROM ticket WHERE solicitante='$id'";
                 $result = mysqli_query($dbconn, $query) or die('Error al avisar del ticket aceptado' . mysqli_error($dbconn));
 
                 if ($data = mysqli_fetch_assoc($result)) {
@@ -141,7 +141,7 @@ if (!isset($_SESSION['usuario'])) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                     <h1 class="h2">Bienvenido <?= $_SESSION['nombre'] ?> a la solicitud de tickets</h1>
                 </div>
-                <form action="../php/agregar_ticket.php" method="POST">
+                <form action="../control/agregar_ticket.php" method="POST">
                     <h3>Solicitar ticket</h3>
                     <div class="row">
                         <div class="col-lg-4 col-xl-4">

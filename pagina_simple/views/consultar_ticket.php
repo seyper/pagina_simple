@@ -188,7 +188,7 @@ if (!isset($_SESSION['usuario'])) {
                                 if ($data3 = mysqli_fetch_assoc($result3)) {
                                     if ($data3['estatus'] == 'aceptado') {
                                 ?>
-                                        <td><a href="../php/cerrar_ticket.php?id=<?= $data['solicitante'] ?>" class="btn btn-danger" onclick="return confirm('¿Seguro quiere cerrar la solicitud?');">Cerrar</a></td>
+                                        <td><a href="../control/cerrar_ticket.php?id=<?= $data['solicitante'] ?>" class="btn btn-danger" onclick="return confirm('¿Seguro quiere cerrar la solicitud?');">Cerrar</a></td>
                                 <?php
                                     } else {
                                         echo "<td></td>";

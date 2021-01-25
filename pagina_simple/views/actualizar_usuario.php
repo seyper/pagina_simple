@@ -130,7 +130,7 @@ if (!isset($_SESSION['usuario'])) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                     <h1 class="h2">Bienvenido <?= $_SESSION['nombre'] ?> a la actualización de usuario</h1>
                 </div>
-                <form action="../php/modificar_usuarios.php" method="POST" id="form">
+                <form action="../control/modificar_usuarios.php" method="POST" id="form">
                     <div id="error" class="alert alert-danger ocultar" role="alert">
                         Las contraseñas no coinciden, vuelva a intentar.
                     </div>
