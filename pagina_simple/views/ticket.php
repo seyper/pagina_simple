@@ -4,7 +4,7 @@
 require_once '../conexion/conexion.php';
 session_start();
 if (!isset($_SESSION['usuario'])) {
-    header('Location: ../index.php');
+    header('Location: index.php');
     exit();
 }
 ?>
@@ -120,7 +120,7 @@ if (!isset($_SESSION['usuario'])) {
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
                     <h1 class="h2">Bienvenido <?= $_SESSION['nombre'] ?> a la consulta de tickets</h1>
                 </div>
-                <form action="../php/aceptar_ticket.php" method="POST">
+                <form action="../php/aceptar_ticket.php" method="POST" id="form">
                     <?php
                     $id = $_GET['id'];
                     $query = "SELECT * FROM ticket WHERE solicitante = '$id'";

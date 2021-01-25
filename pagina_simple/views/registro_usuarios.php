@@ -23,7 +23,7 @@
             <div class="inner">
                 <h3 class="masthead-brand">Soporte Técnico</h3>
                 <nav class="nav nav-masthead justify-content-center">
-                    <a class="nav-link" href="../index.php">Inicio</a>
+                    <a class="nav-link" href="index.php">Inicio</a>
                     <a class="nav-link active" href="registro_usuarios.php">Registro de usuarios</a>
                     <a class="nav-link" href="inicio_sesion.php">Inicio de sesión</a>
                     <a class="nav-link" href="contacto.php">Contacto</a>
@@ -47,7 +47,7 @@
                         <label for="">
                             Nombre:
                         </label>
-                        <input type="text" name="nombre" id="" class="form-control" required minlength="3"  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 209) || (event.charCode == 241))">
+                        <input type="text" name="nombre" id="nombre" class="form-control" required minlength="3"  onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32) || (event.charCode == 209) || (event.charCode == 241))">
                     </div>
                     <div class="col-4">
                         <label for="">

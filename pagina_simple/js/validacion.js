@@ -16,5 +16,14 @@ $(document).ready(function(){
             return true;
         }
     })
+    // $("#form").on('paste', function(e){
+    //     e.preventDefault();
+    //     alert('Esta acción está prohibida');
+    //   })
+      
+    // $("#form").on('copy', function(e){
+    //     e.preventDefault();
+    //     alert('Esta acción está prohibida');
+    // })
     
 })

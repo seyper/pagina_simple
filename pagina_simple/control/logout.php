@@ -15,5 +15,5 @@ unset($_SESSION['correo']);
 session_destroy($_SESSION['correo']);
 
 //redirecciona al login incluyendo una alerta
-header('Location: ../index.php?alert=salida');
+header('Location: ../views/index.php?alert=salida');
 ?>

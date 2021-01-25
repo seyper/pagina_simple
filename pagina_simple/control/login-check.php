@@ -26,6 +26,6 @@ if ($result) {
 
         header("Location: ../views/admin.php");
     } else {
-        header("location: ../index.php?alert=error_sesion"); //Error en el inicio de sesion
+        header("location: ../views/index.php?alert=error_sesion"); //Error en el inicio de sesion
     }
 }
